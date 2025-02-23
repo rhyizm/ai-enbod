@@ -60,7 +60,7 @@ Below is an example using npm. Any preferred package manager is also fine.
 
 ```bash
 
-npm install @rhyizm/AI Enbod
+npm install @rhyizm/ai-enbod
 
 ```
 
