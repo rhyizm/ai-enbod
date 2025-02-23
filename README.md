@@ -105,6 +105,53 @@ console.log(response.assistant.message.text);
 
 ```
 
+## Chat Session
+
+ChatSession allows multiple assistants to engage in a conversation with each other. This is useful for creating scenarios where assistants with different roles interact and discuss topics.
+
+Below is an example of using ChatSession to create a discussion between two assistants:
+
+```typescript
+import { Assistant, ChatSession } from '@rhyizm/ai-enbod';
+
+// Create assistants with different roles
+const assistantA = await Assistant.create({
+  assistantCreateParams: {
+    name: "Assistant A",
+    instructions: "You are Assistant A. Take the position that T-Rex is stronger in the discussion.",
+    model: "gpt-4",
+    temperature: 0.85,
+  },
+});
+
+const assistantB = await Assistant.create({
+  assistantCreateParams: {
+    name: "Assistant B",
+    instructions: "You are Assistant B. Take the position that Tarbosaurus is stronger in the discussion.",
+    model: "gpt-4",
+    temperature: 0.85,
+  },
+});
+
+// Create a ChatSession with multiple assistants
+const session = new ChatSession({assistants: [assistantA, assistantB]});
+
+// Set the topic for discussion
+session.topic = "Discuss which is stronger: T-Rex or Tarbosaurus?";
+
+// Start the conversation loop
+// The loop will continue until the session status becomes "completed"
+while (session.status !== "completed") {
+  await session.startLoop({ limit: 4 }); // Limit the number of exchanges
+  await new Promise(resolve => setTimeout(resolve, 3000)); // Wait 3 seconds between loops
+  console.log(`Current session status: ${session.status}`);
+}
+
+// Clean up by deleting the assistants
+await Assistant.delete({ assistantId: assistantA.id });
+await Assistant.delete({ assistantId: assistantB.id });
+```
+
 ## Call Another Assistant
 
 By registering the callAssistant function in the Assistant of the OpenAI Assistant API, you can call other Assistants.
