@@ -1,0 +1,10 @@
+{
+  "name": "getAuthorInfo",
+  "description": "Returns author information",
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "strict": false
+}

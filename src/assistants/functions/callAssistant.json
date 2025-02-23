@@ -1,0 +1,17 @@
+{
+  "name": "callAssistant",
+  "description": "{'Your Role':'Depending on the content of the conversation, an appropriate assistant will be called upon to continue the conversation.','Assistants':[{'Name':'Translator','Role':'Translates into English','ID':'asst_HjpL3IVhC4UxM2ydiAVSBL6T'}]}",
+  "strict": false,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "assistantId": {
+        "type": "string",
+        "description": "Assistant ID to be called."
+      }
+    },
+    "required": [
+      "assistantId"
+    ]
+  }
+}

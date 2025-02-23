@@ -1,0 +1,17 @@
+{
+  "name": "getCurrentDateTime",
+  "description": "Returns current datetime in ISO 8601 format",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "timezone": {
+        "type": "string",
+        "description": "Options are UCT | JST, other timezone will cause an error."
+      }
+    },
+    "required": [
+      "timezone"
+    ]
+  },
+  "strict": false
+}
